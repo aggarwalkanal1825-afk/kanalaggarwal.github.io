@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanal Aggarwal — Communications Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #faf7f2;
+  --bg2: #f2ede4;
+  --ink: #1c1814;
+  --accent: #b85c2a;
+  --accent2: #2a5c4e;
+  --gold: #c9973a;
+  --muted: #7a736a;
+  --border: #ddd8cf;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Outfit', sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.65; overflow-x: hidden; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 3rem;
+  background: var(--bg); border-bottom: 1px solid var(--border);
+}
+.nav-name { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); }
+.nav-links { display: flex; gap: 1.75rem; list-style: none; }
+.nav-links a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+
+.hero { min-height: 100vh; display: grid; grid-template-columns: 55% 45%; padding-top: 62px; border-bottom: 1px solid var(--border); }
+.hero-left { padding: 5rem 3.5rem 4rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: flex-end; }
+.hero-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); display: inline-block; }
+.hero-headline { font-family: var(--serif); font-size: clamp(50px, 6.5vw, 90px); font-weight: 700; line-height: 0.97; color: var(--ink); letter-spacing: -0.01em; }
+.hero-headline i { color: var(--accent); font-style: italic; }
+.hero-sub { margin-top: 2rem; font-size: 15px; color: var(--muted); max-width: 460px; line-height: 1.8; font-weight: 300; }
+.hero-btns { display: flex; gap: 0.75rem; margin-top: 2.25rem; flex-wrap: wrap; }
+.btn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.7rem 1.6rem; text-decoration: none; display: inline-block; transition: all 0.2s; cursor: pointer; border: none; }
+.btn-dark { background: var(--ink); color: var(--bg); }
+.btn-dark:hover { background: var(--accent); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--border); }
+.btn-ghost:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.hero-right { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: space-between; background: var(--bg2); }
+.hero-scroll { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 0.75rem; align-self: flex-start; }
+.hero-scroll::after { content: ''; width: 1px; height: 40px; background: var(--border); display: block; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.stat { background: var(--bg); padding: 1.75rem 1.5rem; }
+.stat-n { font-family: var(--serif); font-size: 44px; font-weight: 700; color: var(--ink); line-height: 1; }
+.stat-n sup { font-size: 20px; color: var(--accent); vertical-align: top; margin-top: 6px; display: inline-block; }
+.stat-l { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; }
+
+section { border-bottom: 1px solid var(--border); }
+.sec-head { display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 1.5rem; padding: 1.25rem 3rem; border-bottom: 1px solid var(--border); background: var(--bg2); }
+.sec-num { font-family: var(--mono); font-size: 10px; color: var(--gold); letter-spacing: 0.1em; }
+.sec-title { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+
+.about-wrap { display: grid; grid-template-columns: 1fr 1fr; }
+.about-body { padding: 4rem 3.5rem; border-right: 1px solid var(--border); }
+.about-body p { font-size: 15px; line-height: 1.85; color: var(--ink); font-weight: 300; }
+.about-body p + p { margin-top: 1.1rem; }
+.about-body b { font-weight: 500; color: var(--accent2); }
+.about-skills { padding: 4rem 3rem; }
+.sk-group { margin-bottom: 1.75rem; }
+.sk-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+.sk-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag { font-family: var(--mono); font-size: 9px; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.3rem 0.75rem; }
+.tag-dark { background: var(--ink); color: var(--bg); }
+.tag-line { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+
+.work-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.wcard { padding: 2.75rem 3rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.3s; cursor: default; }
+.wcard:nth-child(even) { border-right: none; }
+.wcard:nth-last-child(-n+2) { border-bottom: none; }
+.wcard:hover { background: var(--ink); }
+.wcard:hover .wcat, .wcard:hover .wtitle, .wcard:hover .wdesc, .wcard:hover .wrl, .wcard:hover .wnum, .wcard:hover .wtag { color: var(--bg); border-color: rgba(255,255,255,0.15); }
+.wcard:hover .wdiv { background: rgba(255,255,255,0.12); }
+.wcat { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.85rem; transition: color 0.3s; }
+.wtitle { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 0.75rem; transition: color 0.3s; }
+.wdesc { font-size: 13px; color: var(--muted); line-height: 1.75; font-weight: 300; transition: color 0.3s; }
+.wdiv { height: 1px; background: var(--border); margin: 1.25rem 0; transition: background 0.3s; }
+.wnums { display: flex; gap: 2rem; }
+.wrl { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.25rem; transition: color 0.3s; }
+.wnum { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1; transition: color 0.3s; }
+.wtags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1rem; }
+.wtag { border: 1px solid var(--border); color: var(--muted); font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.2rem 0.55rem; transition: color 0.3s, border-color 0.3s; }
+
+.pitch-wrap { padding: 0 3rem 3rem; }
+.pitem { display: grid; grid-template-columns: 56px 1fr auto; align-items: start; gap: 1.75rem; padding: 1.75rem 0; border-bottom: 1px solid var(--border); transition: padding-left 0.25s; }
+.pitem:last-child { border-bottom: none; }
+.pitem:hover { padding-left: 0.75rem; }
+.pidx { font-family: var(--serif); font-size: 34px; font-weight: 700; color: var(--border); line-height: 1; padding-top: 3px; }
+.ptitle { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 0.35rem; line-height: 1.2; }
+.pdesc { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.65; }
+.pbadge { font-family: var(--mono); font-size: 9px; letter-spacing: 0.09em; text-transform: uppercase; padding: 0.28rem 0.7rem; white-space: nowrap; align-self: flex-start; margin-top: 4px; }
+.pb-green { background: var(--accent2); color: #e0f0eb; }
+.pb-amber { background: var(--gold); color: #3d2800; }
+.pb-rust { background: var(--accent); color: #fdf0e8; }
+
+.pr-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.prcard { padding: 2.75rem 2.25rem; border-right: 1px solid var(--border); }
+.prcard:last-child { border-right: none; }
+.prmark { width: 36px; height: 36px; background: var(--accent2); display: flex; align-items: center; justify-content: center; font-size: 16px; margin-bottom: 1.25rem; }
+.prtitle { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; line-height: 1.25; }
+.prorg { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.85rem; }
+.prdesc { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.7; }
+
+.li-wrap { display: grid; grid-template-columns: 1fr 1fr; }
+.li-left { padding: 4rem 3.5rem; border-right: 1px solid var(--border); background: var(--bg2); }
+.li-stat-row { display: flex; gap: 2.5rem; margin-bottom: 2rem; }
+.li-stat-n { font-family: var(--serif); font-size: 42px; font-weight: 700; color: var(--ink); line-height: 1; }
+.li-stat-n sup { font-size: 18px; color: var(--accent); vertical-align: top; margin-top: 5px; display: inline-block; }
+.li-stat-l { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.35rem; }
+.li-desc { font-size: 14px; color: var(--muted); font-weight: 300; line-height: 1.8; margin-bottom: 1.5rem; }
+.li-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); text-decoration: none; border-bottom: 1px solid var(--accent2); padding-bottom: 1px; }
+.li-right { padding: 4rem 3rem; }
+.li-post { padding: 1.25rem; border: 1px solid var(--border); border-radius: 2px; margin-bottom: 1rem; transition: border-color 0.2s; }
+.li-post:hover { border-color: var(--accent2); }
+.li-post-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+.li-post-text { font-size: 13px; color: var(--ink); font-weight: 400; line-height: 1.6; }
+.li-post-sub { font-size: 12px; color: var(--muted); font-weight: 300; margin-top: 0.4rem; }
+
+.social-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.scell { padding: 2.5rem 1.75rem; border-right: 1px solid var(--border); text-align: center; }
+.scell:last-child { border-right: none; }
+.splat { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+.saction { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 0.6rem; }
+.sdetail { font-size: 12px; color: var(--muted); font-weight: 300; line-height: 1.65; }
+
+.writ-wrap { display: grid; grid-template-columns: 1.6fr 1fr; }
+.writ-left { border-right: 1px solid var(--border); }
+.writ-item { padding: 2rem 3rem; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start; transition: background 0.2s; }
+.writ-item:hover { background: var(--bg2); }
+.writ-item:last-child { border-bottom: none; }
+.writ-pub { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
+.writ-title { font-family: var(--serif); font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; line-height: 1.25; }
+.writ-desc { font-size: 12.5px; color: var(--muted); font-weight: 300; line-height: 1.65; }
+.writ-arr { font-size: 18px; color: var(--border); }
+.writ-right { padding: 3rem 2.5rem; }
+.writ-note-h { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--ink); margin-bottom: 1rem; line-height: 1.25; }
+.writ-note { font-size: 13.5px; color: var(--muted); font-weight: 300; line-height: 1.8; }
+.writ-note + .writ-note { margin-top: 0.85rem; }
+
+.contact-split { display: grid; grid-template-columns: 1fr 1fr; }
+.ct-left { padding: 5rem 3.5rem; background: var(--ink); color: var(--bg); border-right: 1px solid #333; }
+.ct-headline { font-family: var(--serif); font-size: clamp(34px, 4.5vw, 60px); font-weight: 700; line-height: 1.0; letter-spacing: -0.015em; margin-bottom: 1.25rem; }
+.ct-headline i { color: var(--gold); font-style: italic; }
+.ct-sub { font-size: 14px; color: rgba(250,247,242,0.55); font-weight: 300; line-height: 1.75; margin-bottom: 2.5rem; }
+.ct-row { margin-bottom: 1.25rem; }
+.ct-type { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(250,247,242,0.35); margin-bottom: 0.2rem; }
+.ct-val { font-size: 14px; color: var(--bg); text-decoration: none; }
+.ct-val:hover { color: var(--gold); }
+.ct-right { padding: 5rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+.avail { display: inline-flex; align-items: center; gap: 0.5rem; background: #e8f5ed; color: #1a5c35; border: 1px solid #b0d9bc; padding: 0.35rem 0.9rem; font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.75rem; width: fit-content; }
+.avail-dot { width: 6px; height: 6px; border-radius: 50%; background: #2a8c50; animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.ct-offer-h { font-family: var(--serif); font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 0.75rem; }
+.ct-offer-p { font-size: 13.5px; color: var(--muted); font-weight: 300; line-height: 1.75; margin-bottom: 1.75rem; }
+.offer-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.offer-list li { font-size: 13px; color: var(--ink); display: flex; align-items: center; gap: 0.6rem; }
+.offer-list li::before { content: ''; width: 16px; height: 1px; background: var(--accent); flex-shrink: 0; }
+
+footer { padding: 1.25rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
+.ft { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.on { opacity: 1; transform: none; }
+
+@media (max-width: 820px) {
+  nav { padding: 0.9rem 1.25rem; }
+  .nav-links { display: none; }
+  .hero, .about-wrap, .work-grid, .writ-wrap, .contact-split, .li-wrap { grid-template-columns: 1fr; }
+  .hero-left { border-right: none; border-bottom: 1px solid var(--border); padding: 3rem 1.5rem; }
+  .hero-right { padding: 2.5rem 1.5rem; }
+  .about-body { border-right: none; border-bottom: 1px solid var(--border); padding: 2.5rem 1.5rem; }
+  .about-skills { padding: 2.5rem 1.5rem; }
+  .sec-head { grid-template-columns: 52px 1fr; padding: 1rem 1.5rem; }
+  .wcard { border-right: none; }
+  .pr-grid { grid-template-columns: 1fr; }
+  .prcard { border-right: none; border-bottom: 1px solid var(--border); }
+  .prcard:last-child { border-bottom: none; }
+  .social-grid { grid-template-columns: 1fr 1fr; }
+  .scell:nth-child(even) { border-right: none; }
+  .scell:nth-child(1), .scell:nth-child(2) { border-bottom: 1px solid var(--border); }
+  .pitch-wrap { padding: 0 1.5rem 2rem; }
+  .pitem { grid-template-columns: 44px 1fr; }
+  .pbadge { display: none; }
+  .ct-left { border-right: none; border-bottom: 1px solid #333; padding: 3rem 1.5rem; }
+  .ct-right { padding: 3rem 1.5rem; }
+  .writ-left { border-right: none; border-bottom: 1px solid var(--border); }
+  .writ-item { grid-template-columns: 1fr; padding: 1.5rem; }
+  .writ-right { padding: 2rem 1.5rem; }
+  .li-left { border-right: none; border-bottom: 1px solid var(--border); padding: 2.5rem 1.5rem; }
+  .li-right { padding: 2.5rem 1.5rem; }
+  footer { flex-direction: column; gap: 0.4rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Kanal Aggarwal</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#pitches">Pitches</a></li>
+    <li><a href="#pr">PR</a></li>
+    <li><a href="#linkedin">LinkedIn</a></li>
+    <li><a href="#social">Social</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-left reveal">
+    <div class="hero-eyebrow">Communications Portfolio · New Delhi</div>
+    <h1 class="hero-headline">The person<br>who gets <i>things</i><br>said right.</h1>
+    <p class="hero-sub">Client-facing communications professional with a track record in stakeholder engagement, social media campaigns, PR outreach, and founder pitch decks. If your organisation needs someone who can handle clients, carry a brief, shape a narrative, and run a campaign from start to finish, that is exactly what I do.</p>
+    <div class="hero-btns">
+      <a href="#work" class="btn btn-dark">See My Work</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right reveal" style="transition-delay:0.12s">
+    <div class="hero-scroll">Scroll to explore</div>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-n">250<sup>+</sup></div><div class="stat-l">Clients Consulted</div></div>
+      <div class="stat"><div class="stat-n">2<sup>+</sup></div><div class="stat-l">Years Experience</div></div>
+      <div class="stat"><div class="stat-n">1.5K<sup>+</sup></div><div class="stat-l">LinkedIn Community</div></div>
+      <div class="stat"><div class="stat-n">9.6</div><div class="stat-l">University CGPA</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="sec-head reveal"><span class="sec-num">01</span><h2 class="sec-title">About Me</h2></div>
+  <div class="about-wrap">
+    <div class="about-body reveal">
+      <p>I am a <b>client-facing communications professional</b> who thrives where relationships, strategy, and storytelling meet. I have spent 2+ years working directly with clients and stakeholders, building the kind of communication instinct that cannot be taught in a classroom. Whether it is a one-on-one consultation with a professional reshaping their career, a CSR partner being brought into a humanitarian campaign, or a founder sitting across from investors, I know how to make the message land.</p>
+      <p>I handle <b>client relationships end to end</b>: from the first brief and discovery call, through campaign coordination and internal team alignment, to final delivery. I manage the messaging, the people, and the process. I have run <b>social media campaigns across Instagram, LinkedIn, and Facebook</b>, coordinated crowdfunding outreach, drafted crisis communication documents, and onboarded industry experts through targeted LinkedIn sequences.</p>
+      <p>Beyond client work, I have built a <b>LinkedIn community of 1,500+ through my own writing</b>, because I genuinely love the craft. I am a consistent university topper with a <b>9.6 CGPA</b>, ranked 3rd across my university, and a college topper in all five semesters. I bring the same discipline and attention to client work that I bring to academics.</p>
+      <p>If your organisation needs someone who can <b>represent you to clients, shape your brand voice, coordinate campaigns, pitch to partners, and manage social media</b>, with full ownership and no hand-holding, I am ready.</p>
+    </div>
+    <div class="about-skills reveal" style="transition-delay:0.1s">
+      <div class="sk-group">
+        <div class="sk-label">Client Servicing</div>
+        <div class="sk-tags">
+          <span class="tag tag-dark">Client Consulting</span>
+          <span class="tag tag-dark">Stakeholder Engagement</span>
+          <span class="tag tag-dark">Brief Management</span>
+          <span class="tag tag-dark">Conflict Resolution</span>
+          <span class="tag tag-dark">Needs Analysis</span>
+        </div>
+      </div>
+      <div class="sk-group">
+        <div class="sk-label">PR and Communications</div>
+        <div class="sk-tags">
+          <span class="tag tag-dark">Public Relations</span>
+          <span class="tag tag-dark">Narrative Strategy</span>
+          <span class="tag tag-dark">Message Positioning</span>
+          <span class="tag tag-dark">CSR Outreach</span>
+          <span class="tag tag-dark">Campaign Coordination</span>
+        </div>
+      </div>
+      <div class="sk-group">
+        <div class="sk-label">Social Media and Campaigns</div>
+        <div class="sk-tags">
+          <span class="tag tag-line">Campaign Management</span>
+          <span class="tag tag-line">LinkedIn Growth</span>
+          <span class="tag tag-line">Instagram</span>
+          <span class="tag tag-line">Facebook</span>
+          <span class="tag tag-line">Content Strategy</span>
+        </div>
+      </div>
+      <div class="sk-group">
+        <div class="sk-label">Presentations and Tools</div>
+        <div class="sk-tags">
+          <span class="tag tag-line">Founder Pitch Decks</span>
+          <span class="tag tag-line">Canva</span>
+          <span class="tag tag-line">PowerPoint</span>
+          <span class="tag tag-line">MS Suite</span>
+          <span class="tag tag-line">Google Workspace</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="sec-head reveal"><span class="sec-num">02</span><h2 class="sec-title">Client Work and Case Studies</h2></div>
+  <div class="work-grid">
+    <div class="wcard reveal">
+      <div class="wcat">Client Servicing · Freelance Resume Consulting</div>
+      <div class="wtitle">250+ Client Consultations: End-to-End Communication Ownership</div>
+      <div class="wdesc">Managed the full client journey across 250+ independent engagements: discovery calls, needs analysis, narrative shaping, revision cycles, and final delivery. Handled briefs across industries and career levels. Mentored a team of four writers, translating client direction into quality output. These are transferable client-servicing skills I carry directly into communications, PR, and brand-facing roles.</div>
+      <div class="wdiv"></div>
+      <div class="wnums">
+        <div><div class="wnum">250+</div><div class="wrl">Clients Handled</div></div>
+        <div><div class="wnum">4</div><div class="wrl">Writers Mentored</div></div>
+      </div>
+      <div class="wtags"><span class="wtag">Client Management</span><span class="wtag">Brief Handling</span><span class="wtag">Personal Branding</span><span class="wtag">Team Coordination</span></div>
+    </div>
+    <div class="wcard reveal" style="transition-delay:0.1s">
+      <div class="wcat">Social Media Campaigns · Humanitarian Aid International</div>
+      <div class="wtitle">Multi-Platform Campaign Management for Social Impact</div>
+      <div class="wdesc">Managed all social media communication across Instagram, Facebook, and LinkedIn for humanitarian initiatives, maintaining narrative consistency and brand voice. Coordinated the Plant a Tree crowdfunding campaign end to end, driving donor engagement and community participation. Supported crisis communication by assisting in SITREP and disaster response document preparation. Recognised by CEO and senior leadership for communication judgment and reliability.</div>
+      <div class="wdiv"></div>
+      <div class="wnums">
+        <div><div class="wnum">3</div><div class="wrl">Platforms Managed</div></div>
+        <div><div class="wnum">1</div><div class="wrl">Campaign Led</div></div>
+      </div>
+      <div class="wtags"><span class="wtag">Social Media</span><span class="wtag">Campaign Management</span><span class="wtag">Crisis Comms</span><span class="wtag">Donor Engagement</span></div>
+    </div>
+    <div class="wcard reveal">
+      <div class="wcat">Stakeholder Outreach · Youth India Foundation</div>
+      <div class="wtitle">College, Corporate and Expert Outreach for SDG Programs</div>
+      <div class="wdesc">Mapped colleges, universities, and industry professionals to support partnership drives and virtual program planning aligned with UN Sustainable Development Goals. Executed personalised LinkedIn and email outreach sequences to onboard expert speakers, achieving strong response rates through value-first, context-aware messaging. Strengthened external communications and youth engagement across PR and partnership channels.</div>
+      <div class="wdiv"></div>
+      <div class="wnums"><div><div class="wnum">UN</div><div class="wrl">SDG Aligned</div></div></div>
+      <div class="wtags"><span class="wtag">Stakeholder Mapping</span><span class="wtag">LinkedIn Outreach</span><span class="wtag">Program Coordination</span></div>
+    </div>
+    <div class="wcard reveal" style="transition-delay:0.1s">
+      <div class="wcat">Journalism and Content · News Drishti</div>
+      <div class="wtitle">Daily SEO-Driven Reporting Across Diverse Domains</div>
+      <div class="wdesc">Researched and published two articles daily across politics, technology, culture, and society. Applied keyword research and trend analysis to improve discoverability and reader retention. Maintained accuracy, relevance, and consistent voice across high-volume output under daily deadlines.</div>
+      <div class="wdiv"></div>
+      <div class="wnums"><div><div class="wnum">2/day</div><div class="wrl">Articles Published</div></div></div>
+      <div class="wtags"><span class="wtag">SEO Writing</span><span class="wtag">Research</span><span class="wtag">Journalism</span><span class="wtag">Content Strategy</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="pitches">
+  <div class="sec-head reveal"><span class="sec-num">03</span><h2 class="sec-title">Presentations and Founder Pitches</h2></div>
+  <div class="pitch-wrap reveal">
+    <div class="pitem">
+      <div class="pidx">01</div>
+      <div>
+        <div class="ptitle">Founder Pitch Deck for an Early-Stage Energy Sector Startup</div>
+        <div class="pdesc">Developed a full founder pitch deck for an early-stage company in the energy sector, including company profile, problem-solution framing, market positioning, and a narrative arc structured for investor conversations. Designed in Canva with a clean, sector-appropriate visual identity.</div>
+      </div>
+      <div class="pbadge pb-rust">Investor Pitch</div>
+    </div>
+    <div class="pitem">
+      <div class="pidx">02</div>
+      <div>
+        <div class="ptitle">Company Profile and Brand Narrative for Founder</div>
+        <div class="pdesc">Built a structured company profile document positioning the founding story, mission, and value proposition for external stakeholders. Included messaging frameworks the founder could use consistently across decks, emails, and introductions.</div>
+      </div>
+      <div class="pbadge pb-amber">Brand Narrative</div>
+    </div>
+    <div class="pitem">
+      <div class="pidx">03</div>
+      <div>
+        <div class="ptitle">CSR Partnership Proposal Deck for Humanitarian Programs</div>
+        <div class="pdesc">Created pitch-ready materials to engage corporate CSR partners for climate and disaster resilience initiatives at Humanitarian Aid International. Tailored the narrative and visual framing to each partner category's values and decision-making priorities.</div>
+      </div>
+      <div class="pbadge pb-green">CSR Pitch</div>
+    </div>
+    <div class="pitem">
+      <div class="pidx">04</div>
+      <div>
+        <div class="ptitle">LinkedIn Expert Outreach Sequence for Youth Programs</div>
+        <div class="pdesc">Crafted multi-touch, personalised outreach messages for onboarding industry professionals as guest speakers. Achieved strong response rates by leading with relevance and value rather than generic asks.</div>
+      </div>
+      <div class="pbadge pb-green">Outreach Sequence</div>
+    </div>
+  </div>
+</section>
+
+<section id="pr">
+  <div class="sec-head reveal"><span class="sec-num">04</span><h2 class="sec-title">PR and Outreach Projects</h2></div>
+  <div class="pr-grid reveal">
+    <div class="prcard">
+      <div class="prmark">🌱</div>
+      <div class="prorg">Humanitarian Aid International</div>
+      <div class="prtitle">Plant a Tree Crowdfunding Campaign</div>
+      <div class="prdesc">Coordinated communication and execution across donor engagement, community participation, and digital channels for a climate resilience initiative. Maintained narrative consistency from launch through reporting, managing all outward-facing messaging.</div>
+    </div>
+    <div class="prcard">
+      <div class="prmark">🤝</div>
+      <div class="prorg">Youth India Foundation</div>
+      <div class="prtitle">SDG Partnership and College Outreach Drive</div>
+      <div class="prdesc">Researched and mapped educational institutions and professionals to support partnership and internship drives. Strengthened external PR and youth engagement through coordinated campaigns aligned with UN Sustainable Development Goals.</div>
+    </div>
+    <div class="prcard">
+      <div class="prmark">📣</div>
+      <div class="prorg">Humanitarian Aid International</div>
+      <div class="prtitle">Corporate CSR Partner Research and Outreach</div>
+      <div class="prdesc">Mapped CSR-aligned organisations for partnership conversations around climate and disaster programs. Developed targeted outreach strategy, drafted partner-facing materials, and tracked engagement across prospective corporate partners.</div>
+    </div>
+  </div>
+</section>
+
+<section id="linkedin">
+  <div class="sec-head reveal"><span class="sec-num">05</span><h2 class="sec-title">LinkedIn Community and Writing</h2></div>
+  <div class="li-wrap">
+    <div class="li-left reveal">
+      <div class="li-stat-row">
+        <div><div class="li-stat-n">1,500<sup>+</sup></div><div class="li-stat-l">Community Followers</div></div>
+        <div><div class="li-stat-n">100%</div><div class="li-stat-l">Organic Growth</div></div>
+      </div>
+      <p class="li-desc">I grew a LinkedIn community of 1,500+ followers in a short time, entirely through writing. No paid promotion, no shortcuts. Just consistent, authentic posts about communication, careers, and professional storytelling that people found worth following.</p>
+      <p class="li-desc">Writing is not just a professional tool for me. It is how I think, how I connect, and how I have built a personal brand that reflects the same principles I bring to every client engagement: clarity, intent, and a genuine point of view.</p>
+      <a href="https://www.linkedin.com/in/kanal-aggarwal-b173232ba/" target="_blank" rel="noopener" class="li-link">View LinkedIn Profile &rarr;</a>
+    </div>
+    <div class="li-right reveal" style="transition-delay:0.1s">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Featured Posts</div>
+      <div class="li-post">
+        <div class="li-post-label">On Career Communication</div>
+        <div class="li-post-text">Your resume is not a list of your duties. It is the first pitch you ever make. And most people are pitching wrong.</div>
+        <div class="li-post-sub">Writing on personal branding and professional narrative</div>
+      </div>
+      <div class="li-post">
+        <div class="li-post-label">On Storytelling</div>
+        <div class="li-post-text">Every professional has a story worth telling. The difference between those who get noticed and those who do not is not experience. It is articulation.</div>
+        <div class="li-post-sub">Writing on messaging and visibility</div>
+      </div>
+      <div class="li-post">
+        <div class="li-post-label">On Client Communication</div>
+        <div class="li-post-text">250+ consultations in. The one thing that separates good communication from great communication is knowing what to leave out.</div>
+        <div class="li-post-sub">Writing on client work and consulting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="social">
+  <div class="sec-head reveal"><span class="sec-num">06</span><h2 class="sec-title">Social Media</h2></div>
+  <div class="social-grid reveal">
+    <div class="scell">
+      <div class="splat">LinkedIn</div>
+      <div class="saction">Organic Community Growth and Outreach</div>
+      <div class="sdetail">Grew a 1,500+ follower community through writing. Ran expert outreach sequences and managed organisational presence for program and partnership goals.</div>
+    </div>
+    <div class="scell">
+      <div class="splat">Instagram</div>
+      <div class="saction">Brand Voice and Campaign Storytelling</div>
+      <div class="sdetail">Managed content calendar and narrative consistency for humanitarian campaigns. Maintained visual identity and engagement across social impact initiatives.</div>
+    </div>
+    <div class="scell">
+      <div class="splat">Facebook</div>
+      <div class="saction">Community Engagement and Campaign Reach</div>
+      <div class="sdetail">Coordinated campaign launches and donor drives. Ensured platform-appropriate messaging while maintaining cross-channel consistency in tone and purpose.</div>
+    </div>
+    <div class="scell">
+      <div class="splat">Email</div>
+      <div class="saction">Targeted Outreach and Sequence Writing</div>
+      <div class="sdetail">Wrote personalised outreach emails for partnership and community recruitment drives, tailored by audience segment and objective.</div>
+    </div>
+  </div>
+</section>
+
+<section id="writing">
+  <div class="sec-head reveal"><span class="sec-num">07</span><h2 class="sec-title">Writing</h2></div>
+  <div class="writ-wrap">
+    <div class="writ-left reveal">
+      <div class="writ-item">
+        <div>
+          <div class="writ-pub">Freelance Consulting</div>
+          <div class="writ-title">Professional Narrative and Resume Copy</div>
+          <div class="writ-desc">Crafted compelling professional documents across 250+ client engagements. Required deep listening, audience awareness, and the ability to distil a career into a clear, competitive story under time pressure.</div>
+        </div>
+        <div class="writ-arr">&#8594;</div>
+      </div>
+      <div class="writ-item">
+        <div>
+          <div class="writ-pub">News Drishti</div>
+          <div class="writ-title">SEO-Driven Daily Reporting</div>
+          <div class="writ-desc">Published two articles daily across politics, technology, culture and society. Applied keyword research and trend analysis to maximise discoverability while maintaining journalistic accuracy.</div>
+        </div>
+        <div class="writ-arr">&#8594;</div>
+      </div>
+      <div class="writ-item">
+        <div>
+          <div class="writ-pub">Humanitarian Aid International</div>
+          <div class="writ-title">SITREPs and Crisis Communication Documents</div>
+          <div class="writ-desc">Assisted in drafting situation reports and disaster response documents requiring precision, coordination, and clarity under operational pressure.</div>
+        </div>
+        <div class="writ-arr">&#8594;</div>
+      </div>
+      <div class="writ-item">
+        <div>
+          <div class="writ-pub">LinkedIn · Personal Writing</div>
+          <div class="writ-title">Thought Leadership That Built a Community</div>
+          <div class="writ-desc">Consistent writing on communication, careers, and professional storytelling grew a 1,500+ follower community organically. Writing that reflects voice, clarity, and a genuine perspective that people choose to follow.</div>
+        </div>
+        <div class="writ-arr">&#8594;</div>
+      </div>
+    </div>
+    <div class="writ-right reveal" style="transition-delay:0.1s">
+      <div class="writ-note-h">Why Writing Is Central to Everything I Do</div>
+      <p class="writ-note">I do not write to fill space. I write because every brief, every client, every campaign deserves a version of itself that is clear, intentional, and worth reading.</p>
+      <p class="writ-note">Whether it is a 150-word LinkedIn post or a 10-page disaster response briefing, the discipline is the same: understand the audience first, then write for them specifically.</p>
+      <p class="writ-note">That mindset is what turned a freelance practice into 250+ client relationships, and what grew a LinkedIn community to 1,500 without a single paid post. It is what I bring to every communications role I take on.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="border-bottom:none">
+  <div class="contact-split">
+    <div class="ct-left reveal">
+      <h2 class="ct-headline">Let's make<br><i>something</i><br>worth saying.</h2>
+      <p class="ct-sub">Open to communications internships, client-facing roles, PR positions, and project-based work. Based in New Delhi and available for remote engagements globally.</p>
+      <div class="ct-row"><div class="ct-type">Email</div><a href="mailto:aggarwalkanal1825@gmail.com" class="ct-val">aggarwalkanal1825@gmail.com</a></div>
+      <div class="ct-row"><div class="ct-type">Phone</div><a href="tel:+918595846621" class="ct-val">+91 8595846621</a></div>
+      <div class="ct-row"><div class="ct-type">LinkedIn</div><a href="https://www.linkedin.com/in/kanal-aggarwal-b173232ba/" target="_blank" rel="noopener" class="ct-val">linkedin.com/in/kanal-aggarwal-b173232ba</a></div>
+      <div class="ct-row"><div class="ct-type">Location</div><span class="ct-val">New Delhi, India</span></div>
+    </div>
+    <div class="ct-right reveal" style="transition-delay:0.1s">
+      <div class="avail"><span class="avail-dot"></span>Available for New Opportunities</div>
+      <div class="ct-offer-h">What I bring to your organisation</div>
+      <p class="ct-offer-p">A communicator who handles clients, runs campaigns, shapes narratives, builds pitches, and manages social media. Independently. With care.</p>
+      <ul class="offer-list">
+        <li>End-to-end client servicing and relationship management</li>
+        <li>Social media campaign management across platforms</li>
+        <li>PR strategy, CSR outreach, and stakeholder engagement</li>
+        <li>Founder pitch decks and company profile writing</li>
+        <li>Brand messaging and narrative positioning</li>
+        <li>Content writing, journalism, and LinkedIn storytelling</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="ft">Kanal Aggarwal · Communications Portfolio</span>
+  <span class="ft">BA Journalism and Mass Communication · GGSIPU · 9.6 CGPA · University Rank 3</span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
